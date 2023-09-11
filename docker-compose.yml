@@ -1,0 +1,19 @@
+version: '1'
+services:
+  api:
+    build: .
+    ports:
+      - "3000:3000"
+    env_file:
+      - config.env
+  cache: 
+    image: redis:7.2.1
+    restart: always
+    command: redis-server --requirepass password
+    ports:
+      - "6379:6379"
+    volumes:
+      - cache:/data
+volumes:
+  cache: 
+    driver: local
