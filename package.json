@@ -25,6 +25,7 @@
     "passport": "^0.6.0",
     "passport-google-oauth20": "^2.0.0",
     "redis": "^4.6.8",
+    "tsc": "^2.0.4",
     "ws": "^8.14.1"
   },
   "devDependencies": {
