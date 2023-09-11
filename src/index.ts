@@ -22,28 +22,23 @@ database = database.replace(
     process.env.DB_USERNAME!!
 );
 
-let server: any = null;
-
 mongoose.connect(database)
     .then(() => {
         console.log("Db connected successfully");
-
-        server = app.listen(port, () => {
-            console.log("Server listening on port", port);
-        });
     })
     .catch(err => console.error("DB connection failed ", err));
 
-
+const server = app.listen(port, () => {
+    console.log("Server listening on port", port);
+});
 
 
 process.on('unhandledRejection', error => {
     console.log("Unhandled rejection, shudding down... ");
     console.log(error);
-    if (server != null)
-        server.close(() => {
-            process.exit(1);
-        });
+    server.close(() => {
+        process.exit(1);
+    });
 })
 
 
